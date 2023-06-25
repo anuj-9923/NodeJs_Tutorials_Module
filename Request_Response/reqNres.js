@@ -4,10 +4,12 @@ const server = http.createServer((req, res) => {
     console.log(req.url, req.method, req.headers);
     const url = req.url;
     const method = req.method;
+    const data = fs.readFileSync('message.txt');
 
     if (url === '/') {
         res.write('<html>');
         res.write('<head><title>Enter Message</title><head>');
+        res.write('<body>' + data + '</body>');
         res.write('<body><form action="/message" method="POST"><input type="text" name="message"><button type="submit" ss>Send </button></form></body>');
         res.write('</html>');
         return res.end();
