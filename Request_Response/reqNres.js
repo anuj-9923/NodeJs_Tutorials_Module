@@ -23,15 +23,14 @@ const server = http.createServer((req, res) => {
         return req.on('end', () => { // here is a callback function. so it will execute later and before it line no. 33-37 will execute first.
             const parseBody = Buffer.concat(body).toString();
             const message = parseBody.split('=')[1];
-            fs.writeFileSync('message.txt', message);
-            res.statusCode = 302;          // I written code here at place of below so it will not return the response. and because of callback .
-            res.setHeader('Location', '/');// so avoid the this problem return the req.on. then it will work fine.
-            return res.end();
+            fs.writeFile('message.txt', message, err => { // this callback function execute only when message.txt file get update each time.
+                res.statusCode = 302;          // otherwise this code will not execute. because of node.js asynchronus nature.
+                res.setHeader('Location', '/');
+                return res.end();
+            });
+
 
         });
-        // res.statusCode = 302;
-        // res.setHeader('Location', '/');
-        // return res.end();
     }
     res.write('<html>');
     res.write('<head><title>Default Page</title><head>');
