@@ -1,0 +1,1 @@
+res.type({ key: value1 });
