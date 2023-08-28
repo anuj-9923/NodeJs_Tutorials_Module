@@ -5,8 +5,8 @@
   "main": "reqNres.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon reqNres.js",
-    "start-server": "node reqNres.js"
+    "start": "nodemon request_response.js",
+    "start-server": "node request_response.js"
   },
   "author": "Anuj Kumar",
   "license": "ISC",
